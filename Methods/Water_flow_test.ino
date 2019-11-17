@@ -1,5 +1,5 @@
 /*
-Liquid flow rate sensor -DIYhacking.com Arvind Sanjeev
+Initial flow sensor code from DIYhacking.com Arvind Sanjeev
 
 Measure the liquid/water flow rate using this code. 
 Connect Vcc and Gnd of sensor to arduino, and the 
@@ -8,20 +8,15 @@ signal line to arduino digital pin 2.
  */
 
 byte statusLed    = 13;
-
 byte sensorInterrupt = 0;  // 0 = digital pin 2
 byte sensorPin       = 2;
-
 // The hall-effect flow sensor outputs approximately 4.5 pulses per second per
 // litre/minute of flow.
 float calibrationFactor = 4.5;
-
 volatile byte pulseCount;  
-
 float flowRate;
 unsigned int flowMilliLitres;
 unsigned long totalMilliLitres;
-
 unsigned long oldTime;
 
 void setup()
@@ -49,9 +44,6 @@ void setup()
   attachInterrupt(sensorInterrupt, pulseCounter, FALLING);
 }
 
-/**
- * Main program loop
- */
 void loop()
 {
    
